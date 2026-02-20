@@ -128,20 +128,26 @@ export default function HomePage() {
               <SectionHeading
                 badge="Om oss"
                 title="Mer enn en utdanningsinstitusjon"
-                subtitle="Iqra Læring og Aktivitetssenter er et samlingspunkt for hele familien — et sted der kunnskap og glede møtes."
+                subtitle="Iqra Læring og Aktivitetssenter er et samlingspunkt for hele familien — der kunnskap og glede møtes."
                 centered={false}
               />
               <div className="mt-8 space-y-4 text-text-muted leading-relaxed">
                 <p>
-                  Vi ligger sentralt i Oslo, i Ryenstubben 2, og tilbyr et unikt
-                  læringsmiljø for hele familien. Hos oss finner du islamske studier,
-                  språkopplæring, kulturelle aktiviteter og familievennlige
-                  arrangementer.
+                  Vi ligger sentralt i Oslo, i Ryenstubben 2, og tilbyr et unikt læringsmiljø for hele familien. Hos oss finner du islamske studier, språkopplæring, kulturelle aktiviteter og familievennlige arrangementer.
                 </p>
-                <p>
-                  Vårt mål er å bygge et sterkt, inkluderende fellesskap der alle
-                  føler seg velkomne — uansett bakgrunn og alder.
-                </p>
+                {/* Pull-quote */}
+                <blockquote className="border-l-4 border-primary pl-5 py-1 my-6 italic text-text font-medium">
+                  "Vårt mål er å bygge et sterkt, inkluderende fellesskap der alle føler seg velkomne — uansett bakgrunn og alder."
+                </blockquote>
+              </div>
+              {/* Trust badges */}
+              <div className="flex flex-wrap gap-2 mt-6">
+                {["Islamsk miljø", "Familievennlig", "Inkluderende"].map((badge) => (
+                  <span key={badge} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M1 4L3.5 6.5L9 1" stroke="#047857" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    {badge}
+                  </span>
+                ))}
               </div>
               <Link
                 href="/om-oss"
@@ -152,9 +158,9 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Image */}
+            {/* Image stack */}
             <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/helgeskole.jpg"
                   alt="Fellesskap hos Iqra Senter"
@@ -162,10 +168,17 @@ export default function HomePage() {
                   height={500}
                   className="object-cover w-full h-[400px] lg:h-[480px]"
                 />
+                {/* Image overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/30 to-transparent" />
               </div>
-              {/* Decorative element */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-accent/10 -z-10" />
-              <div className="absolute -top-4 -left-4 w-16 h-16 rounded-2xl bg-primary/10 -z-10" />
+              {/* Decorative corners */}
+              <div className="absolute -bottom-5 -right-5 w-28 h-28 rounded-3xl bg-accent/20 -z-10" />
+              <div className="absolute -top-5 -left-5 w-20 h-20 rounded-3xl bg-primary/20 -z-10" />
+              {/* Floating stat card */}
+              <div className="absolute -bottom-4 -left-4 z-10 glass rounded-2xl px-5 py-4 shadow-xl border border-white/40">
+                <div className="text-2xl font-extrabold font-heading gradient-text">200+</div>
+                <div className="text-xs text-text-muted mt-0.5">Aktive medlemmer</div>
+              </div>
             </div>
           </div>
 
