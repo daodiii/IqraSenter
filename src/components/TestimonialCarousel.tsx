@@ -14,12 +14,13 @@ const accentColors = [
 function TestimonialCard({
   testimonial,
   staggered = false,
+  colorIndex = 0,
 }: {
   testimonial: (typeof TESTIMONIALS)[number];
   staggered?: boolean;
+  colorIndex?: number;
 }) {
-  const idx = TESTIMONIALS.indexOf(testimonial);
-  const accent = accentColors[idx % accentColors.length];
+  const accent = accentColors[colorIndex % accentColors.length];
 
   return (
     <div
@@ -67,13 +68,13 @@ export function TestimonialCarousel() {
       {/* Desktop staggered grid */}
       <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-5">
         {TESTIMONIALS.map((t, i) => (
-          <TestimonialCard key={t.name} testimonial={t} staggered={i % 2 === 1} />
+          <TestimonialCard key={t.name} testimonial={t} staggered={i % 2 === 1} colorIndex={i} />
         ))}
       </div>
 
       {/* Mobile carousel */}
       <div className="md:hidden">
-        <TestimonialCard testimonial={TESTIMONIALS[active]} />
+        <TestimonialCard testimonial={TESTIMONIALS[active]} colorIndex={active} />
         <div className="flex items-center justify-center gap-4 mt-6">
           <button
             onClick={() => setActive((p) => (p - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
