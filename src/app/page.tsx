@@ -144,7 +144,7 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-2 mt-6">
                 {["Islamsk miljø", "Familievennlig", "Inkluderende"].map((badge) => (
                   <span key={badge} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">
-                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M1 4L3.5 6.5L9 1" stroke="#047857" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     {badge}
                   </span>
                 ))}
@@ -160,13 +160,13 @@ export default function HomePage() {
 
             {/* Image stack */}
             <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] lg:h-[480px]">
                 <Image
                   src="/images/helgeskole.jpg"
                   alt="Fellesskap hos Iqra Senter"
-                  width={600}
-                  height={500}
-                  className="object-cover w-full h-[400px] lg:h-[480px]"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Image overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/30 to-transparent" />
