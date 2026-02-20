@@ -7,7 +7,7 @@ import { StatsBar } from "@/components/StatsBar";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { NewsCard } from "@/components/NewsCard";
 import { ContactForm } from "@/components/ContactForm";
-import { SITE, NEWS } from "@/lib/constants";
+import { SITE, NEWS, STATS } from "@/lib/constants";
 
 export default function HomePage() {
   return (
@@ -56,11 +56,7 @@ export default function HomePage() {
 
             {/* Mini stats strip */}
             <div className="mt-10 flex items-center gap-6 pt-8 border-t border-border/60">
-              {[
-                { value: "200+", label: "Medlemmer" },
-                { value: "5+", label: "År aktive" },
-                { value: "50+", label: "Arrangementer" },
-              ].map((stat) => (
+              {STATS.slice(0, 3).map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-xl font-extrabold text-primary font-heading">{stat.value}</div>
                   <div className="text-xs text-text-muted mt-0.5">{stat.label}</div>
@@ -72,7 +68,7 @@ export default function HomePage() {
 
         {/* WAVE DIVIDER — sits between panels, z-20 so it's above both */}
         <div className="hidden lg:block absolute left-[40%] top-0 h-full w-16 z-20 pointer-events-none">
-          <svg viewBox="0 0 64 800" preserveAspectRatio="none" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 64 800" preserveAspectRatio="none" className="h-full w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M0 0 C32 200, 48 400, 0 800 L64 800 L64 0 Z" fill="var(--color-bg)" />
           </svg>
         </div>
@@ -94,7 +90,7 @@ export default function HomePage() {
           <div className="absolute bottom-8 right-8 z-10 glass rounded-2xl px-5 py-4 shadow-xl border border-white/30 max-w-[200px]">
             <div className="flex items-center gap-2 mb-1">
               <span className="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </span>
               <span className="text-sm font-bold text-text">Et trygt fellesskap</span>
             </div>
