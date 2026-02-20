@@ -295,16 +295,22 @@ export default function HomePage() {
       </section>
 
       {/* ===== CTA BANNER ===== */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-primary-dark" />
-        <div className="absolute inset-0 pattern-islamic opacity-20" />
+      <section className="relative py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary to-primary-dark" />
+        <div className="absolute inset-0 pattern-islamic opacity-15" />
+        {/* Decorative orbs */}
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary-light/10 blur-3xl pointer-events-none" />
+
         <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-6 border border-accent/30">
+            Bli en del av oss
+          </span>
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Bli en del av vårt fellesskap
           </h2>
-          <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
-            Læring, mestring og moro — sammen. Meld deg inn i dag og gi familien
-            din et fellesskap som varer.
+          <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+            Læring, mestring og moro — sammen. Meld deg inn i dag og gi familien din et fellesskap som varer.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -316,7 +322,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/stott-oss"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition-all duration-200 cursor-pointer text-base"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition-all duration-200 cursor-pointer text-base border border-white/20"
             >
               Støtt oss
             </Link>
