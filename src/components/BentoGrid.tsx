@@ -1,38 +1,45 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { BookOpen, Users, GraduationCap, Building, ArrowRight } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 
+type ServiceTitle = (typeof SERVICES)[number]["title"];
+
 const iconMap = { BookOpen, Users, GraduationCap, Building } as const;
 
-const linkMap: Record<string, string> = {
+const linkMap: Record<ServiceTitle, string> = {
   Helgeskole: "/om-oss",
   Fritidsaktiviteter: "/om-oss",
   "Kurs og opplæring": "/om-oss",
   "Leie rom": "/leie-rom",
 };
 
-const categoryMap: Record<string, string> = {
+const categoryMap: Record<ServiceTitle, string> = {
   Helgeskole: "Utdanning",
   Fritidsaktiviteter: "Aktiviteter",
   "Kurs og opplæring": "Kurs",
   "Leie rom": "Lokaler",
 };
 
-const colSpanMap: Record<string, string> = {
+const colSpanMap: Record<ServiceTitle, string> = {
   Helgeskole: "lg:col-span-2",
   Fritidsaktiviteter: "lg:col-span-1",
   "Kurs og opplæring": "lg:col-span-1",
   "Leie rom": "lg:col-span-2",
 };
 
-const heightMap: Record<string, string> = {
+const heightMap: Record<ServiceTitle, string> = {
   Helgeskole: "min-h-[380px] lg:min-h-[420px]",
   Fritidsaktiviteter: "min-h-[380px] lg:min-h-[420px]",
   "Kurs og opplæring": "min-h-[260px] lg:min-h-[300px]",
   "Leie rom": "min-h-[260px] lg:min-h-[300px]",
+};
+
+const sizesMap: Record<ServiceTitle, string> = {
+  Helgeskole:           "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 66vw",
+  Fritidsaktiviteter:   "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  "Kurs og opplæring":  "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  "Leie rom":           "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 66vw",
 };
 
 export function BentoGrid() {
@@ -43,7 +50,7 @@ export function BentoGrid() {
         return (
           <Link
             key={service.title}
-            href={linkMap[service.title] || "/"}
+            href={linkMap[service.title]}
             className={`group relative overflow-hidden rounded-3xl cursor-pointer ${colSpanMap[service.title]} ${heightMap[service.title]}`}
           >
             {/* Photo */}
@@ -52,7 +59,7 @@ export function BentoGrid() {
               alt={service.title}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes={sizesMap[service.title]}
             />
 
             {/* Bottom gradient */}
