@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from 'framer-motion'
 import { SectionHeading } from "@/components/SectionHeading";
 import { BentoGrid } from "@/components/BentoGrid";
 import { StatsBar } from "@/components/StatsBar";
@@ -15,6 +16,15 @@ import { NEWS, STATS } from "@/lib/constants";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (delay: number = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' as const, delay },
+    }),
+  }
 
   return (
     <>
@@ -121,14 +131,29 @@ export default function HomePage() {
         {/* ===== BENTO GRID — SERVICES ===== */}
         <section id="tjenester" className="snap-section flex items-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
-            <SectionHeading
-              badge="Våre tjenester"
-              title="Alt du trenger, samlet på ett sted"
-              subtitle="Fra helgeskole og fritidsaktiviteter til kurs og lokaler — vi har noe for hele familien."
-            />
-            <div className="mt-14">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              custom={0}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <SectionHeading
+                badge="Våre tjenester"
+                title="Alt du trenger, samlet på ett sted"
+                subtitle="Fra helgeskole og fritidsaktiviteter til kurs og lokaler — vi har noe for hele familien."
+              />
+            </motion.div>
+            <motion.div
+              className="mt-14"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              custom={0.15}
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <BentoGrid />
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -137,7 +162,13 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Text */}
-              <div>
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                custom={0}
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 <SectionHeading
                   badge="Om oss"
                   title="Mer enn en utdanningsinstitusjon"
@@ -169,10 +200,17 @@ export default function HomePage() {
                   Les mer om oss
                   <ArrowRight size={16} />
                 </Link>
-              </div>
+              </motion.div>
 
               {/* Image stack */}
-              <div className="relative">
+              <motion.div
+                className="relative"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                custom={0.15}
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] lg:h-[480px]">
                   <Image
                     src="/images/helgeskole.jpg"
@@ -193,20 +231,34 @@ export default function HomePage() {
                   <div className="text-2xl font-extrabold font-heading gradient-text">200+</div>
                   <div className="text-xs text-text-muted mt-0.5">Aktive medlemmer</div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Stats bar */}
-            <div className="mt-20">
+            <motion.div
+              className="mt-20"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              custom={0.25}
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <StatsBar />
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* ===== AKTUELT PREVIEW ===== */}
         <section id="aktuelt" className="snap-section flex items-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-14">
+            <motion.div
+              className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-14"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              custom={0}
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <SectionHeading
                 badge="Aktuelt"
                 title="Siste nytt"
@@ -220,10 +272,19 @@ export default function HomePage() {
                 Se alle nyheter
                 <ArrowRight size={16} />
               </Link>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {NEWS.map((item) => (
-                <NewsCard key={item.title} {...item} />
+              {NEWS.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  custom={0.15 + i * 0.08}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  <NewsCard {...item} />
+                </motion.div>
               ))}
             </div>
           </div>
@@ -232,14 +293,29 @@ export default function HomePage() {
         {/* ===== TESTIMONIALS ===== */}
         <section id="testimonials" className="snap-section bg-bg-warm flex items-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
-            <SectionHeading
-              badge="Tilbakemeldinger"
-              title="Hva medlemmene sier"
-              subtitle="Vi er stolte av fellesskapet vi har bygget sammen."
-            />
-            <div className="mt-14">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              custom={0}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <SectionHeading
+                badge="Tilbakemeldinger"
+                title="Hva medlemmene sier"
+                subtitle="Vi er stolte av fellesskapet vi har bygget sammen."
+              />
+            </motion.div>
+            <motion.div
+              className="mt-14"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              custom={0.15}
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <TestimonialCarousel />
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -254,16 +330,45 @@ export default function HomePage() {
             <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary-light/10 blur-3xl pointer-events-none" />
 
             <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-6 border border-accent/30">
-                Bli en del av oss
-              </span>
-              <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                custom={0}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-6 border border-accent/30">
+                  Bli en del av oss
+                </span>
+              </motion.div>
+              <motion.h2
+                className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                custom={0.1}
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 Bli en del av vårt fellesskap
-              </h2>
-              <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+              </motion.h2>
+              <motion.p
+                className="mt-4 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                custom={0.2}
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 Læring, mestring og moro — sammen. Meld deg inn i dag og gi familien din et fellesskap som varer.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              </motion.p>
+              <motion.div
+                className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                custom={0.3}
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 <Link
                   href="/bli-medlem"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-light text-white font-bold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer text-base"
@@ -277,7 +382,7 @@ export default function HomePage() {
                 >
                   Støtt oss
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
 
