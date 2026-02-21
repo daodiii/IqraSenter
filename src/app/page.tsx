@@ -129,8 +129,8 @@ export default function HomePage() {
         </section>
 
         {/* ===== BENTO GRID — SERVICES ===== */}
-        <section id="tjenester" className="snap-section flex items-center">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <section id="tjenester" className="snap-section">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-4 w-full flex flex-col h-full">
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -145,7 +145,7 @@ export default function HomePage() {
               />
             </motion.div>
             <motion.div
-              className="mt-14"
+              className="mt-6 flex-1 min-h-0"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
@@ -158,8 +158,8 @@ export default function HomePage() {
         </section>
 
         {/* ===== OM OSS PREVIEW ===== */}
-        <section id="om-oss" className="snap-section bg-bg-warm flex items-center">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <section id="om-oss" className="snap-section bg-bg-warm overflow-y-auto" style={{ overflowY: 'auto' }}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-8 w-full">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Text */}
               <motion.div
@@ -211,7 +211,7 @@ export default function HomePage() {
                 custom={0.15}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] lg:h-[480px]">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[200px] lg:h-[260px]">
                   <Image
                     src="/images/helgeskole.jpg"
                     alt="Fellesskap hos Iqra Senter"
@@ -236,7 +236,7 @@ export default function HomePage() {
 
             {/* Stats bar */}
             <motion.div
-              className="mt-20"
+              className="mt-6"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
@@ -249,10 +249,10 @@ export default function HomePage() {
         </section>
 
         {/* ===== AKTUELT PREVIEW ===== */}
-        <section id="aktuelt" className="snap-section flex items-center">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <section id="aktuelt" className="snap-section flex flex-col justify-center">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-6 w-full">
             <motion.div
-              className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-14"
+              className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-6"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
@@ -291,8 +291,8 @@ export default function HomePage() {
         </section>
 
         {/* ===== TESTIMONIALS ===== */}
-        <section id="testimonials" className="snap-section bg-bg-warm flex items-center">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <section id="testimonials" className="snap-section bg-bg-warm flex flex-col justify-center">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-6 w-full">
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -307,7 +307,7 @@ export default function HomePage() {
               />
             </motion.div>
             <motion.div
-              className="mt-14"
+              className="mt-8"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
@@ -320,7 +320,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== CTA BANNER + FOOTER ===== */}
-        <section id="cta" className="snap-section flex flex-col">
+        <section id="cta" className="snap-section flex flex-col" style={{ overflowY: 'auto' }}>
           {/* CTA content */}
           <div className="relative flex-1 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary to-primary-dark" />

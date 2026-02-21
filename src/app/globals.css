@@ -76,6 +76,12 @@ html {
   scroll-snap-align: start;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-navbar {
+  padding-top: 64px; /* fixed navbar height */
 }
 
 @media (prefers-reduced-motion: reduce) {
