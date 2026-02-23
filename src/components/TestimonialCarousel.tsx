@@ -1,106 +1,119 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/constants";
 
-const accentColors = [
-  "bg-primary",
-  "bg-accent",
-  "bg-primary-light",
-  "bg-accent-light",
-] as const;
-
-function TestimonialCard({
-  testimonial,
-  staggered = false,
-  colorIndex = 0,
-}: {
-  testimonial: (typeof TESTIMONIALS)[number];
-  staggered?: boolean;
-  colorIndex?: number;
-}) {
-  const accent = accentColors[colorIndex % accentColors.length];
-
-  return (
-    <div
-      className={`bg-card rounded-3xl p-7 shadow-md border border-border/40 hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col ${staggered ? "mt-6" : ""}`}
-    >
-      {/* Large decorative quote mark */}
-      <div className="font-heading text-7xl leading-none text-primary/10 font-extrabold select-none -mt-2 -ml-1 mb-2">
-        &ldquo;
-      </div>
-
-      {/* Quote */}
-      <p className="text-text text-sm leading-relaxed flex-1">
-        {testimonial.quote}
-      </p>
-
-      {/* Stars */}
-      <div className="flex gap-0.5 mt-5">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} size={13} className="text-accent fill-accent" />
-        ))}
-      </div>
-
-      {/* Author */}
-      <div className="mt-3 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-          <span className="text-xs font-bold text-primary">{testimonial.initials}</span>
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-text">{testimonial.name}</p>
-          <p className="text-xs text-text-muted">{testimonial.age} år</p>
-        </div>
-      </div>
-
-      {/* Bottom accent bar */}
-      <div className={`mt-5 h-1 w-12 rounded-full ${accent}`} />
-    </div>
-  );
-}
+const AUTO_INTERVAL = 5000;
 
 export function TestimonialCarousel() {
   const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(1); // 1 = right, -1 = left
+  const [paused, setPaused] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
+
+  const goTo = useCallback(
+    (index: number, dir: number) => {
+      setDirection(dir);
+      setActive(index);
+    },
+    []
+  );
+
+  const goNext = useCallback(() => {
+    goTo((active + 1) % TESTIMONIALS.length, 1);
+  }, [active, goTo]);
+
+  const goPrev = useCallback(() => {
+    goTo(
+      (active - 1 + TESTIMONIALS.length) % TESTIMONIALS.length,
+      -1
+    );
+  }, [active, goTo]);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(goNext, AUTO_INTERVAL);
+    return () => clearInterval(timer);
+  }, [goNext, paused, resetKey]);
+
+  const t = TESTIMONIALS[active];
 
   return (
-    <div className="relative">
-      {/* Desktop staggered grid */}
-      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {TESTIMONIALS.map((t, i) => (
-          <TestimonialCard key={t.name} testimonial={t} staggered={i % 2 === 1} colorIndex={i} />
-        ))}
+    <div
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Blockquote slide area */}
+      <div className="relative min-h-[330px] sm:min-h-[300px]">
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.blockquote
+            key={active}
+            custom={direction}
+            initial={{ x: 50 * direction, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -50 * direction, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="relative max-w-4xl mx-auto pl-8 before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:rounded-full before:bg-primary"
+          >
+            <p className="text-2xl sm:text-3xl text-text leading-relaxed">
+              &ldquo;{t.quote}&rdquo;
+            </p>
+
+            <footer className="mt-8 flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <span className="text-sm font-bold text-primary">
+                  {t.initials}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-base">
+                <cite className="not-italic font-semibold text-text">
+                  {t.name}
+                </cite>
+                <span
+                  aria-hidden
+                  className="bg-text/15 size-1.5 rounded-full"
+                />
+                <span className="text-text-muted">{t.age} år</span>
+              </div>
+            </footer>
+          </motion.blockquote>
+        </AnimatePresence>
       </div>
 
-      {/* Mobile carousel */}
-      <div className="md:hidden">
-        <TestimonialCard testimonial={TESTIMONIALS[active]} colorIndex={active} />
-        <div className="flex items-center justify-center gap-4 mt-6">
-          <button
-            onClick={() => setActive((p) => (p - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
-            className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary/5 transition-colors cursor-pointer"
-            aria-label="Forrige"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <div className="flex gap-2">
-            {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={`h-2 rounded-full transition-all cursor-pointer ${i === active ? "bg-primary w-6" : "bg-border w-2 hover:bg-text-muted"}`}
-                aria-label={`Gå til tilbakemelding ${i + 1}`}
-              />
-            ))}
-          </div>
-          <button
-            onClick={() => setActive((p) => (p + 1) % TESTIMONIALS.length)}
-            className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary/5 transition-colors cursor-pointer"
-            aria-label="Neste"
-          >
-            <ChevronRight size={18} />
-          </button>
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-6 mt-10">
+        <button
+          onClick={() => { goPrev(); setResetKey((k) => k + 1); }}
+          className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent text-accent hover:text-white transition-colors cursor-pointer shadow-sm btn-magnetic"
+          aria-label="Forrige"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <div className="flex gap-2">
+          {TESTIMONIALS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { goTo(i, i > active ? 1 : -1); setResetKey((k) => k + 1); }}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === active
+                  ? "bg-primary w-8"
+                  : "bg-border w-2 hover:bg-text-muted"
+                }`}
+              aria-label={`Gå til tilbakemelding ${i + 1}`}
+            />
+          ))}
         </div>
+
+        <button
+          onClick={() => { goNext(); setResetKey((k) => k + 1); }}
+          className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent text-accent hover:text-white transition-colors cursor-pointer shadow-sm btn-magnetic"
+          aria-label="Neste"
+        >
+          <ChevronRight size={20} />
+        </button>
       </div>
     </div>
   );
