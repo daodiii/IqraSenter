@@ -58,21 +58,15 @@ export function Navbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 cursor-pointer">
+          <Link href="/" className="flex items-center cursor-pointer">
             <Image
-              src="/images/logo.png"
+              src="/images/logo-wide.jpg"
               alt={SITE.name}
-              width={48}
-              height={48}
-              className="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover"
+              width={177}
+              height={50}
+              className="h-10 sm:h-12 w-auto object-contain"
               priority
             />
-            <span
-              className={`font-heading text-base sm:text-lg font-bold transition-colors duration-300 tracking-wide ${lightText ? "text-white" : "text-primary-dark"
-                }`}
-            >
-              Iqra Senter
-            </span>
           </Link>
 
           {/* Desktop nav */}

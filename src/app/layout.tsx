@@ -26,6 +26,7 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.iqrasenter.net"),
   title: {
     default: "Iqra Læring og Aktivitetssenter — Læring for hele familien",
     template: "%s | Iqra Senter",
@@ -45,6 +46,9 @@ export const metadata: Metadata = {
     "unge",
     "familier",
   ],
+  other: {
+    "theme-color": "#FFFFFF",
+  },
   openGraph: {
     title: "Iqra Læring og Aktivitetssenter",
     description:

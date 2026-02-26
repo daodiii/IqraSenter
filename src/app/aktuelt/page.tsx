@@ -9,8 +9,12 @@ import { NEWS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Aktuelt",
-  description:
-    "Hold deg oppdatert med siste nyheter, arrangementer og aktiviteter fra Iqra Læring og Aktivitetssenter i Oslo.",
+  description: "Hold deg oppdatert med siste nyheter, arrangementer og aktiviteter fra Iqra Læring og Aktivitetssenter i Oslo.",
+  openGraph: {
+    title: "Aktuelt hos Iqra Senter",
+    description: "Hold deg oppdatert med siste nyheter, arrangementer og aktiviteter fra Iqra Læring og Aktivitetssenter i Oslo.",
+    url: "https://www.iqrasenter.net/aktuelt",
+  }
 };
 
 function formatDate(dateStr: string) {
@@ -72,9 +76,8 @@ export default function AktueltPage() {
             <FadeIn key={item.title} delay={i * 0.1}>
               <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div
-                  className={`lg:col-span-5 relative aspect-[3/2] rounded-lg overflow-hidden ${
-                    i % 2 === 1 ? "lg:order-2" : ""
-                  }`}
+                  className={`lg:col-span-5 relative aspect-[3/2] rounded-lg overflow-hidden ${i % 2 === 1 ? "lg:order-2" : ""
+                    }`}
                 >
                   <Image
                     src={item.image}
@@ -86,9 +89,8 @@ export default function AktueltPage() {
                   />
                 </div>
                 <div
-                  className={`lg:col-span-7 ${
-                    i % 2 === 1 ? "lg:order-1" : ""
-                  }`}
+                  className={`lg:col-span-7 ${i % 2 === 1 ? "lg:order-1" : ""
+                    }`}
                 >
                   <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
                     {formatDate(item.date)}

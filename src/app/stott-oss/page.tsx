@@ -12,6 +12,12 @@ import { FadeIn } from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "Støtt oss",
+  description: "Din støtte gjør en forskjell. Se hvordan du kan bidra til Iqra Læring og Aktivitetssenter gjennom Vipps, bankoverføring eller som frivillig.",
+  openGraph: {
+    title: "Støtt Iqra Senter",
+    description: "Din støtte gjør en forskjell. Se hvordan du kan bidra til Iqra Læring og Aktivitetssenter i Oslo.",
+    url: "https://www.iqrasenter.net/stott-oss",
+  }
 };
 
 const IMPACT_STATS = [

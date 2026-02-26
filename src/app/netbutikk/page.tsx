@@ -6,9 +6,13 @@ import { ProductCard } from "@/components/ProductCard";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Netbutikk",
-  description:
-    "Kjøp islamske barnebøker og andre produkter fra Iqra Læring og Aktivitetssenter.",
+  title: "Nettbutikk",
+  description: "Kjøp islamske barnebøker og læringsmateriell fra Iqra Læring og Aktivitetssenter. Vakre illustrasjoner og inspirerende fortellinger.",
+  openGraph: {
+    title: "Nettbutikk - Iqra Senter",
+    description: "Kjøp islamske barnebøker og læringsmateriell fra Iqra Læring og Aktivitetssenter.",
+    url: "https://www.iqrasenter.net/netbutikk",
+  }
 };
 
 export default function NetbutikkPage() {

@@ -9,8 +9,12 @@ import { FadeIn } from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "Om oss",
-  description:
-    "Lær mer om Iqra Læring og Aktivitetssenter — et samlingspunkt for hele familien med islamske studier, språkopplæring, kulturelle aktiviteter og fellesskap i Oslo.",
+  description: "Lær mer om Iqra Læring og Aktivitetssenter — et samlingspunkt for hele familien med islamske studier, språkopplæring, kulturelle aktiviteter og fellesskap i Oslo.",
+  openGraph: {
+    title: "Om Iqra Senter",
+    description: "Lær mer om Iqra Læring og Aktivitetssenter — et samlingspunkt for hele familien i Oslo.",
+    url: "https://www.iqrasenter.net/om-oss",
+  }
 };
 
 const VALUES = [

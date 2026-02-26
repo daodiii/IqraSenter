@@ -20,6 +20,12 @@ import { FAQAccordion } from "./faq-accordion";
 
 export const metadata: Metadata = {
   title: "Bli medlem / Opptak",
+  description: "Bli medlem i Iqra Læring og Aktivitetssenter. Meld familien inn og få tilgang til helgeskole, kurs, fritidsaktiviteter og et sterkt fellesskap.",
+  openGraph: {
+    title: "Bli medlem - Iqra Senter",
+    description: "Bli medlem i Iqra Læring og Aktivitetssenter. Meld familien inn i dag for tilgang til helgeskole og fellesskap.",
+    url: "https://www.iqrasenter.net/bli-medlem",
+  }
 };
 
 const BENEFITS = [

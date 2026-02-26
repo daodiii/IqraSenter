@@ -25,19 +25,16 @@ export function Footer() {
         <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-0 md:justify-between">
           {/* Brand */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center gap-3 cursor-pointer">
+            <Link href="/" className="flex items-center cursor-pointer">
               <Image
-                src="/images/logo.png"
+                src="/images/logo-wide.jpg"
                 alt={SITE.name}
-                width={48}
-                height={48}
-                className="h-12 w-12 rounded-full object-cover"
+                width={177}
+                height={50}
+                className="h-10 md:h-12 w-auto object-contain bg-white rounded-sm px-1"
                 priority
                 unoptimized
               />
-              <span className="font-heading text-lg font-bold tracking-wide text-white">
-                Iqra Senter
-              </span>
             </Link>
           </div>
 
